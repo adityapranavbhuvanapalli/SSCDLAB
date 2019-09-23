@@ -1,2 +1,2 @@
 # SSCDLAB
-SSCD labsets
+Compiler Design and Operating System labsets
