@@ -1,10 +1,12 @@
+//Author : Aditya Pranav Bhuvanapalli
+
 // Misbehaviour for few cases
 
 #include <iostream>
 #include<cstring>
 using namespace std;
-char nonterminal[100],temp;
-string terminal[100];
+char production_head[100],temp;
+string production_body[100];
 int N;
 string stack;
 int top=-1;
@@ -32,25 +34,25 @@ void grammar()
 {
     int i;
     N=8;
-    nonterminal[0]='E';
-    nonterminal[1]='X';
-    nonterminal[2]='X';
-    nonterminal[3]='T';
-    nonterminal[4]='Y';
-    nonterminal[5]='Y';
-    nonterminal[6]='F';
-    nonterminal[7]='F';
-    terminal[0]="TX";
-    terminal[1]="+TX";
-    terminal[2]="#";
-    terminal[3]="FY";
-    terminal[4]="*FY";
-    terminal[5]="#";
-    terminal[6]="i";
-    terminal[7]="(E)";
+    production_head[0]='E';
+    production_head[1]='X';
+    production_head[2]='X';
+    production_head[3]='T';
+    production_head[4]='Y';
+    production_head[5]='Y';
+    production_head[6]='F';
+    production_head[7]='F';
+    production_body[0]="TX";
+    production_body[1]="+TX";
+    production_body[2]="#";
+    production_body[3]="FY";
+    production_body[4]="*FY";
+    production_body[5]="#";
+    production_body[6]="i";
+    production_body[7]="(E)";
     for(i=0;i<N;i++)
     {
-        cout<<nonterminal[i]<<" -> "<<terminal[i]<<endl;
+        cout<<production_head[i]<<" -> "<<production_body[i]<<endl;
     }
     cout<<endl;
 }
@@ -59,21 +61,21 @@ void grammar2()
 {
     int i;
     N=6;
-    nonterminal[0]='S';
-    nonterminal[1]='S';
-    nonterminal[2]='S';
-    nonterminal[3]='T';
-    nonterminal[4]='X';
-    nonterminal[5]='X';
-    terminal[0]="a";
-    terminal[1]="^";
-    terminal[2]="(T)";
-    terminal[3]="SX";
-    terminal[4]=",SX";
-    terminal[5]="#";
+    production_head[0]='S';
+    production_head[1]='S';
+    production_head[2]='S';
+    production_head[3]='T';
+    production_head[4]='X';
+    production_head[5]='X';
+    production_body[0]="a";
+    production_body[1]="^";
+    production_body[2]="(T)";
+    production_body[3]="SX";
+    production_body[4]=",SX";
+    production_body[5]="#";
     for(i=0;i<N;i++)
     {
-        cout<<nonterminal[i]<<" -> "<<terminal[i]<<endl;
+        cout<<production_head[i]<<" -> "<<production_body[i]<<endl;
     }
     cout<<endl;
 }
@@ -86,11 +88,11 @@ string first(char X)
     string F1;
     for(i=0;i<N;i++)
     {
-        if(nonterminal[i]==X)
+        if(production_head[i]==X)
         {
-            if(isupper(terminal[i][0]))
+            if(isupper(production_body[i][0]))
             {
-                F1=first(terminal[i][0]);
+                F1=first(production_body[i][0]);
                 for(k=0;k<F1.length();k++)
                 {
                     if(!find(F,F1[k]))
@@ -99,13 +101,13 @@ string first(char X)
                     }
                 }
             }
-            else if(terminal[i]=="#")
+            else if(production_body[i]=="#")
             {
                 F.append("#");
             }
             else
             {
-                F.append(1,terminal[i][0]);
+                F.append(1,production_body[i][0]);
             }
         }
     }
@@ -118,11 +120,11 @@ int main()
     grammar();
     for(i=0;i<N;i++)
     {
-        if(!find(stack,nonterminal[i]))
+        if(!find(stack,production_head[i]))
         {
-            push(nonterminal[i]);
-            fir=first(nonterminal[i]);
-            cout<<"FIRST("<<nonterminal[i]<<") = {"<<fir<<"}"<<endl;
+            push(production_head[i]);
+            fir=first(production_head[i]);
+            cout<<"FIRST("<<production_head[i]<<") = {"<<fir<<"}"<<endl;
         }
     }
     return 0;

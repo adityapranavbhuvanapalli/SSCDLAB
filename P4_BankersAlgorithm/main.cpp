@@ -1,3 +1,4 @@
+//Author : Aditya Pranav Bhuvanapalli
 #include<stdio.h>
 #include<stdlib.h>
 const int MAX=10;

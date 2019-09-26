@@ -1,3 +1,4 @@
+//Author : Aditya Pranav Bhuvanapalli
 #include <iostream>
 using namespace std;
 int mutex=1,empty=5,full=0,buffer[5],top=-1;
